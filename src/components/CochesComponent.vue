@@ -11,7 +11,8 @@
 
 <script>
 import axios from 'axios';
-let urlApi = "https://apicochespaco.azurewebsites.net/"
+import Global from '../Global';
+let urlApi = Global.urlApiCoches;
 
     export default{
         name: "CochesComponent",
