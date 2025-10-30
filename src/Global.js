@@ -1,6 +1,7 @@
 let Global = {
     urlApiCoches: "https://apicochespaco.azurewebsites.net/",
-    urlNorthwind: "https://services.odata.org/V4/Northwind/Northwind.svc/"
+    urlNorthwind: "https://services.odata.org/V4/Northwind/Northwind.svc/",
+    urlEmpleados: "https://apiempleadosfullstack.azurewebsites.net/",
 }
 
 export default Global;
