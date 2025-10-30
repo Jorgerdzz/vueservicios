@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table border="1">
+        <table class="table table-primary">
             <thead>
                 <tr>
                     <th>ID</th>
