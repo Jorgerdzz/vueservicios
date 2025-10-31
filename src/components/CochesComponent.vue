@@ -20,7 +20,7 @@ const serviceCoches = new ServiceCoches();
             }
         },
         mounted(){
-            serviceCoches.getCoches.then(result=>{
+            serviceCoches.getCoches().then(result=>{
                 this.coches = result
             })
         }
