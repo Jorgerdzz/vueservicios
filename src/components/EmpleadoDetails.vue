@@ -7,7 +7,7 @@
                 {{empleado.apellido}}
             </option>
         </select>
-        <button v-on:click.prevent="loadEmpleado()">Buscar</button>
+        <button v-on:click.prevent="findEmpleado()">Buscar</button>
         <div v-if="empleado">
             <ul class="list-group">
                 <li class="list-group-item">Apellido: {{empleado.apellido}}</li>
@@ -19,9 +19,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Global from '@/Global';
-let url = Global.urlEmpleados;
+import ServiceEmpleados from '../services/ServiceEmpleados'
+const serviceEmpleados = new ServiceEmpleados();
 
     export default{
         name: "EmpleadoDetails",
@@ -32,23 +31,18 @@ let url = Global.urlEmpleados;
                 empleado: null
             }
         },
-        methods: {
-            loadEmpleados(){
-                let request = "api/Empleados";
-                axios.get(url + request).then(response=>{
-                    this.empleados = response.data
-                })
-            },
-            loadEmpleado(){
-                let request = "api/Empleados/" + this.idEmpleado;
-                console.log(this.idEmpleado)
-                axios.get(url + request).then(response=>{
-                    this.empleado = response.data
+        methods:{
+            findEmpleado(){
+                serviceEmpleados.findEmpleado(this.idEmpleado).then(result=>{
+                    this.empleado = result
                 })
             }
         },
         mounted(){
-            this.loadEmpleados();
+            serviceEmpleados.getEmpleados().then(result=>{
+                this.empleados = result
+            })
+            
         }
     }
 </script>

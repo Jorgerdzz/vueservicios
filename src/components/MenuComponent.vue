@@ -78,9 +78,8 @@
 </template>
 
 <script>
-import Global from "@/Global";
-import axios from "axios";
-let url = Global.urlEmpleados;
+import ServiceEmpleados from '@/services/ServiceEmpleados';
+const serviceEmpleados = new ServiceEmpleados();
 export default {
   name: "MenuComponent",
   data() {
@@ -88,16 +87,10 @@ export default {
       oficios: [],
     };
   },
-  methods: {
-    loadOficios() {
-      let request = "api/Empleados/oficios";
-      axios.get(url + request).then((response) => {
-        this.oficios = response.data;
-      });
-    },
-  },
   mounted() {
-    this.loadOficios();
+    serviceEmpleados.getOficios().then(result=>{
+        this.oficios = result
+    })
   },
 };
 </script>
