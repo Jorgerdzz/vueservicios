@@ -19,6 +19,16 @@
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/empleados">Empleados</router-link>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Oficios
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li v-for="oficio in oficios" :key="oficio">
+                                <router-link class="dropdown-item" :to="'/empleados'">{{oficio}}</router-link>
+                            </li>
+                        </ul>
                     </li>   
                 </ul>
                 <form class="d-flex" role="search">
@@ -32,7 +42,26 @@
 </template>
 
 <script>
+import Global from '@/Global'
+import axios from 'axios';
+let url = Global.urlEmpleados;
     export default{
-        name: "MenuComponent"
+        name: "MenuComponent",
+        data(){
+            return{
+                oficios: []
+            }
+        },
+        methods:{
+            loadOficios(){
+                let request = "api/Empleados/oficios"
+                axios.get(url + request).then(response=>{
+                    this.oficios = response.data
+                })
+            }
+        },
+        mounted(){
+            this.loadOficios();
+        }
     }
 </script>
