@@ -2,14 +2,14 @@ import Global from "@/Global";
 import axios from "axios";
 
 export default class ServiceCoches{
-    url = Global.urlApiCoches
     
-    getCoches(){
-        let coches = []
+    getCoches = new Promise(function(resolve){
+        let coches = [];
+        let url = Global.urlApiCoches
         let request = "webresources/coches";
-        axios.get(this.url + request).then(response=>{
-            this.coches = response.data
+        axios.get(url + request).then(response=>{
+            coches = response.data;
+            resolve(coches)
         })
-        return coches;
-    }
+    })
 }
