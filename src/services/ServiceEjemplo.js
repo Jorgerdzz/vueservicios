@@ -1,6 +1,8 @@
 
 export default class ServiceEjemplo{
     getSaludo(nombre){
-        return "Bienvenido a tu viernes, " + nombre
+        return new Promise(function(resolve){
+            resolve("¡Le deseamos una experiencia gratificante " + nombre + "!")
+        })
     }
 }
